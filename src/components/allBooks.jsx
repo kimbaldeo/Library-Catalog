@@ -1,18 +1,17 @@
-import {Link} from "react-router-dom";
+import React from 'react';
+import { Link } from "react-router-dom";
 
 function Library(props) {
-
     return (
-        <>
-        { props.books ? props.books.map((books, idx) => (
+    <>
+        { props.books ? props.books.map((book, idx) => (
             <div key = {idx}>
                 <Link to = {`/${idx}`}>
-                    <h1>Test</h1>
-                    <h3>{books.title}</h3>
+                    <h3>{book.volumeInfo.title}</h3>
                 </Link>
             </div>
         )): <h3>Loading...</h3>}
-        </>
+    </>
     )
 }
 
