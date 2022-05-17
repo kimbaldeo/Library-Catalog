@@ -3,6 +3,7 @@ import React from 'react';
 import { Routes, Route } from 'react-router';
 import { useState, useEffect } from 'react';
 import Library from './components/allBooks';
+import OneBook from './components/book';
 import config from './config.json';
 
 const fetchVolumesURL = `https://books.googleapis.com/books/v1/volumes?q=""&printType=books&orderBy=newest&maxResults=40&key=${config.apiKey}`
@@ -27,6 +28,7 @@ function App() {
     <div className="App">
       <Routes>
         <Route path = "/" element = {<Library books = {books} />} />
+        <Route path = "/:id" element = {<OneBook books = {books} />} />
       </Routes>
     </div>
   );
