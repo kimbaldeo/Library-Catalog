@@ -7,6 +7,13 @@ import Library from './components/allBooks';
 import OneBook from './components/book';
 import Author from './components/author'
 
+/* Steps to setup backend?
+  - Setup Express
+  - On App Start set connection to MongoDB
+  - Have listener to getBooks() on initial route (i.e. localhost:3000/)
+  - Have getBooks() check for books in the DB first - if no books found within the range (i.e. startIndex) before your fetch of the Google Books API, then fetch from Google Books API
+  - store results from Google Books API into MongoDB
+*/
 
 let startIndex = 0
 const fetchVolumesURL = `https://books.googleapis.com/books/v1/volumes?q=""&maxResults=40&langRestrict=english&orderBy=newest&printType=BOOKS&startIndex=${startIndex}&key=${config.apiKey}`

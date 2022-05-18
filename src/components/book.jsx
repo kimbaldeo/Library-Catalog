@@ -11,8 +11,9 @@ function OneBook(props) {
 
     return (
         <>
-            <h1>{theBook.volumeInfo.title} by <Link to = {`/author/${authorLink}`}>{author}</Link></h1>
-            <img src = {theBook.volumeInfo.imageLinks.thumbnail} alt = "{theBook.volumeInfo.title}"/>
+            <h1>{theBook.volumeInfo.title}</h1>
+            <h3><Link to = {`/author/${authorLink}`}>{author}</Link></h3>
+            <img src = {theBook.volumeInfo.imageLinks.thumbnail} className = "aBook" alt = "book cover"/>
             <p>published: {theBook.volumeInfo.publishedDate}</p>
             <p>{theBook.volumeInfo.description}</p>
         </>

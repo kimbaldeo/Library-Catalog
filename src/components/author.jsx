@@ -10,6 +10,7 @@ function Author(props) {
                 book.volumeInfo.authors.map((authorInArray) => authorInArray.replace(/\s+/g, "")).includes(author) ?
                     (
                     <div key = {idx}>
+                        <h1>More by {book.volumeInfo.authors}</h1>
                         <Link to = {`/books/${idx}`}>
                             <h3>{book.volumeInfo.title}</h3>
                         </Link>
