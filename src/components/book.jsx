@@ -5,6 +5,9 @@ import { Link } from "react-router-dom";
 function OneBook(props) {
     let {id} = useParams()
     let theBook = props.books[id]
+    let author = theBook.volumeInfo.authors
+    console.log(author)
+    let authorLink = author.replace(/\s+/g, "")
 
     return (
         <>

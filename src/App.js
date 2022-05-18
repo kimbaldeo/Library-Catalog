@@ -1,13 +1,14 @@
 import './App.css';
+import config from './config.json';
 import React from 'react';
 import { Routes, Route } from 'react-router';
 import { useState, useEffect } from 'react';
 import Library from './components/allBooks';
 import OneBook from './components/book';
-import config from './config.json';
+import Author from './components/author';
 
 const fetchVolumesURL = `https://books.googleapis.com/books/v1/volumes?q=""&printType=books&orderBy=newest&maxResults=40&key=${config.apiKey}`
-let startIndex = 80
+let startIndex = 0
 
 function App() { 
   const [books, setBooks] = useState("")
@@ -29,6 +30,7 @@ function App() {
       <Routes>
         <Route path = "/" element = {<Library books = {books} />} />
         <Route path = "/:id" element = {<OneBook books = {books} />} />
+          <Route path = {`${authorLink}`} element = {<Author books ={books} />} />
       </Routes>
     </div>
   );
