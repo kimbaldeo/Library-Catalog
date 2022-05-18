@@ -5,16 +5,17 @@ import { Routes, Route } from 'react-router';
 import { useState, useEffect } from 'react';
 import Library from './components/allBooks';
 import OneBook from './components/book';
-import Author from './components/author';
+import Author from './components/author'
 
-const fetchVolumesURL = `https://books.googleapis.com/books/v1/volumes?q=""&printType=books&orderBy=newest&maxResults=40&key=${config.apiKey}`
+
 let startIndex = 0
+const fetchVolumesURL = `https://books.googleapis.com/books/v1/volumes?q=""&maxResults=40&langRestrict=english&orderBy=newest&printType=BOOKS&startIndex=${startIndex}&key=${config.apiKey}`
 
 function App() { 
   const [books, setBooks] = useState("")
 
   function getBooks() {
-      const url = fetchVolumesURL + `&startIndex=${startIndex}`;
+      const url = fetchVolumesURL;
       fetch(url)
       .then((res) =>  res.json())
       .then((res) =>  setBooks(shuffle(res.items)))
@@ -29,8 +30,8 @@ function App() {
     <div className="App">
       <Routes>
         <Route path = "/" element = {<Library books = {books} />} />
-        <Route path = "/:id" element = {<OneBook books = {books} />} />
-          <Route path = {`${authorLink}`} element = {<Author books ={books} />} />
+        <Route path = "/books/:id" element = {<OneBook books = {books} />} />
+        <Route path = "/author/:author" element = {<Author books = {books} />} />
       </Routes>
     </div>
   );

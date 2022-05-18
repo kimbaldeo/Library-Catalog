@@ -6,7 +6,7 @@ function Library(props) {
     <>
         { props.books ? props.books.map((book, idx) => (
             <div key = {idx}>
-                <Link to = {`/${idx}`}>
+                <Link to = {`/books/${idx}`}>
                     <h3>{book.volumeInfo.title}</h3>
                 </Link>
             </div>

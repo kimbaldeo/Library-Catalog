@@ -5,9 +5,12 @@ const reviewSchema = new mongoose.Schema({
         type: string,
         required: [true]
     },
+    book: {
+        type: mongoose.Types.ObjectId,
+        ref: "Book"}
 },
-    {timestamps: true}
+
 )
 
-const Book = mongoose.model('Review', reviewSchema);
+const Review = mongoose.model('Review', reviewSchema);
 module.exports = Review;

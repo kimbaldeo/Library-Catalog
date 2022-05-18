@@ -6,11 +6,10 @@ const authorSchema = new mongoose.Schema({
         required: [true]
     },
     Books: {
-        type: Array,
-        required: [true]
-    }
+        type: mongoose.Types.ObjectId,
+        ref: "Book"}
 },
 )
 
-const Book = mongoose.model('Review', reviewSchema);
-module.exports = Review;
+const Author = mongoose.model("Author", reviewSchema);
+module.exports = Author;

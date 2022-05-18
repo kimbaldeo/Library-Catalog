@@ -6,22 +6,18 @@ const bookSchema = new mongoose.Schema({
         required: [true]
     },
     author: {
-        type: string,
-        required: [true]
+        type: mongoose.Types.ObjectId,
+        ref: "Author"
     },
     published: {
-        type: string,
+        type: date,
         required: [true]
-        },
+    },
     cover: {
         type: string,
         required: [false]
     },
     description: {
-        type: string,
-        required: [false]
-    },
-    review: {
         type: string,
         required: [false]
     },
