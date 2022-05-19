@@ -5,9 +5,9 @@ import { useState } from 'react';
 
 
 function Author() {
-    // let { author } = useParams()
+    let { authorName } = useParams()
 
-    let authorDisplay = "maas"
+    let authorDisplay = (authorName.replace(/\s+/g, '+'))
     const fetchURL = `https://books.googleapis.com/books/v1/volumes?q=inauthor:${authorDisplay}&langRestrict=english&orderBy=relevance&printType=BOOKS&key=${config.apiKey}`
 
     const [author, setAuthor] = useState([])
@@ -24,7 +24,14 @@ function Author() {
 
     return (
         <>
-        <h4>{author.volumeInfo}</h4>
+            { author ? author.map((author, idx) => (
+                <div key = {idx}>
+                    <Link to = {`/${idx}`}>
+                        <img src = {author.volumeInfo.imageLinks.smallThumbnail} className = "allbookscover" alt = "book cover"/> 
+                        <h3>{author.title}</h3>
+                    </Link>
+                </div>
+            )) : <h2>Loading...</h2>}
         </>
     )
 }
