@@ -11,7 +11,7 @@ function Library(props) {
             props.books.map((book, idx) => (
                 <div key = { idx }>
                     <Link to = {`/books/${idx}`}>
-                        <img src = {book.volumeInfo.imageLinks.smallThumbnail} className = "allbookscover" />
+                        <img src = {book.volumeInfo.imageLinks.smallThumbnail} className = "allbookscover" alt = "book cover"/>
                         <p>{book.volumeInfo.title}</p>
                     </Link>
                 </div>

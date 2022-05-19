@@ -1,26 +1,30 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import config from './../config.json';
 import { Link, useParams } from "react-router-dom";
+import { useState } from 'react';
 
-function Author(props) {
-    let { author } = useParams()
+
+function Author() {
+    // let { author } = useParams()
+
+    let authorDisplay = "maas"
+    const fetchURL = `https://books.googleapis.com/books/v1/volumes?q=inauthor:${authorDisplay}&langRestrict=english&orderBy=relevance&printType=BOOKS&key=${config.apiKey}`
+
+    const [author, setAuthor] = useState([])
+
+    function getAuthor() {
+        fetch(fetchURL)
+        .then((res) => res.json())
+        .then((res) => (res.items))
+    }
+
+    useEffect(() => {
+        getAuthor()
+    }, [])
+
     return (
         <>
-            { props.books ? 
-            ( props.books.map((book, idx) => (
-                book.volumeInfo.authors.map((authorInArray) => authorInArray.replace(/\s+/g, "")).includes(author) ?
-                    (
-                    <div key = {idx}>
-                        <h1>More by {book.volumeInfo.authors}</h1>
-                        <Link to = {`/books/${idx}`}>
-                            <h3>{book.volumeInfo.title}</h3>
-                        </Link>
-                    </div>
-                    ) : 
-                    (
-                    <div></div> 
-                    )
-                ))
-            ) : <h3>Loading...</h3>}
+        <h4>{author.volumeInfo}</h4>
         </>
     )
 }
