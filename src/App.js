@@ -3,10 +3,12 @@ import config from './config.json';
 import React from 'react';
 import { Routes, Route } from 'react-router';
 import { useState, useEffect } from 'react';
-import Library from './components/allBooks';
-import OneBook from './components/book';
-import Author from './components/author'
-import Results from "./components.results"
+import Nav from './components/nav';
+import Library from './pages/allBooks';
+import OneBook from './pages/book';
+import Author from './pages/author'
+import Results from "./pages/results"
+import Bookshelf from './pages/bookShelf';
 
 /* Steps to setup backend?
   - Setup Express
@@ -46,9 +48,11 @@ function App() {
 
   return (
     <>
+      <Nav />
       <div className="App">
         <Routes>
           <Route path = "/" element = {<Library books = {books} isLoaded = {isLoaded} handlePageChange = {handlePageChange} pageCount = {pageCount}/>} />
+          <Route path = "/shelf" element = {<Bookshelf />} />
           <Route path = "/books/:id" element = {<OneBook books = {books} />} >
             <Route path = "/author/:author" element = {<Author />} />
           </Route>

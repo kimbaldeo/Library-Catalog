@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import config from './../config.json';
+import config from '../config.json';
 import { Link, useParams } from "react-router-dom";
 import { useState } from 'react';
 
