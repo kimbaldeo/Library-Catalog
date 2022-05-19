@@ -7,6 +7,8 @@
   font-size: 50px;
   margin-bottom: 70px;
 }
+
+
 /* All Books */
 .booksDisplay {
   display: grid;
@@ -18,11 +20,14 @@
   width: 80px;
 }
 
+
 /* Book Page */
 .aBook {
   width:250px;
 }
 
+
+/* Pagination  */
 .container{
   display: flex;
   list-style: none;

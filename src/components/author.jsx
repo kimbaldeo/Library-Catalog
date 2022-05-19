@@ -7,28 +7,27 @@ import { useState } from 'react';
 function Author() {
     let { authorName } = useParams()
 
-    let authorDisplay = (authorName.replace(/\s+/g, '+'))
-    const fetchURL = `https://books.googleapis.com/books/v1/volumes?q=inauthor:${authorDisplay}&langRestrict=english&orderBy=relevance&printType=BOOKS&key=${config.apiKey}`
+    const fetchURL = `https://books.googleapis.com/books/v1/volumes?q=inauthor:${authorName}&maxResults=40&orderBy=relevance&printType=BOOKS&key=${config.apiKey}`
 
-    const [author, setAuthor] = useState([])
+    const [books, setBooks] = useState([])
 
-    function getAuthor() {
+    function getBooks() {
         fetch(fetchURL)
         .then((res) => res.json())
-        .then((res) => (res.items))
+        .then((res) => (setBooks(res.items)))
     }
 
     useEffect(() => {
-        getAuthor()
+        getBooks()
     }, [])
 
     return (
         <>
-            { author ? author.map((author, idx) => (
+            <h1>{authorName}</h1>
+            { books ? books.map((book, idx) => (
                 <div key = {idx}>
                     <Link to = {`/${idx}`}>
-                        <img src = {author.volumeInfo.imageLinks.smallThumbnail} className = "allbookscover" alt = "book cover"/> 
-                        <h3>{author.title}</h3>
+                        <h3>{book.volumeInfo.title}</h3>
                     </Link>
                 </div>
             )) : <h2>Loading...</h2>}

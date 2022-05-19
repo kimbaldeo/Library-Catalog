@@ -7,7 +7,7 @@ function OneBook(props) {
     let {id} = useParams()
     let theBook = props.books[id]
     let author = theBook.volumeInfo.authors[0]
-    let authorLink = author.replace(/\s+/g, "")
+    let authorLink = author.replace(/\s+/g, "+")
 
     return (
         <>

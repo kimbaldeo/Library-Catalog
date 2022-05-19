@@ -49,7 +49,7 @@ function App() {
         <Routes>
           <Route path = "/" element = {<Library books = {books} isLoaded = {isLoaded} handlePageChange = {handlePageChange} pageCount = {pageCount}/>} />
           <Route path = "/books/:id" element = {<OneBook books = {books} />} />
-          <Route path = "/author/:author" element = {<Author books = {books} />} />
+          <Route path = "/author/:author" element = {<Author />} />
         </Routes>
       </div>
     </>
