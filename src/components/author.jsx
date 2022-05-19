@@ -1,12 +1,12 @@
 import React from 'react';
-import {useParams} from "react-router-dom"
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 function Author(props) {
-    let {author} = useParams()
+    let { author } = useParams()
     return (
         <>
-            { props.books ? props.books.map((book, idx) => (
+            { props.books ? 
+            ( props.books.map((book, idx) => (
                 book.volumeInfo.authors.map((authorInArray) => authorInArray.replace(/\s+/g, "")).includes(author) ?
                     (
                     <div key = {idx}>
@@ -19,7 +19,8 @@ function Author(props) {
                     (
                     <div></div> 
                     )
-                )): <h3>Loading...</h3>}
+                ))
+            ) : <h3>Loading...</h3>}
         </>
     )
 }

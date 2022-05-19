@@ -15,32 +15,44 @@ import Author from './components/author'
   - store results from Google Books API into MongoDB
 */
 
-let startIndex = 0
-const fetchVolumesURL = `https://books.googleapis.com/books/v1/volumes?q=""&maxResults=40&langRestrict=english&orderBy=newest&printType=BOOKS&startIndex=${startIndex}&key=${config.apiKey}`
-
 function App() { 
-  const [books, setBooks] = useState("")
+  const [books, setBooks] = useState([])
+  const [currentPage, setcurrentPage] = useState(0);
+  const [pageCount, setPageCount] = useState(1);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const startIndex = currentPage * 40;
+  const fetchVolumesURL = `https://books.googleapis.com/books/v1/volumes?q=""&maxResults=40&langRestrict=english&orderBy=newest&printType=BOOKS&startIndex=${startIndex}&key=${config.apiKey}`
 
   function getBooks() {
-      const url = fetchVolumesURL;
-      fetch(url)
+      fetch(fetchVolumesURL)
       .then((res) =>  res.json())
-      .then((res) =>  setBooks(shuffle(res.items)))
+      .then(json =>  {
+        setBooks([...json.items]);
+        setPageCount(Math.ceil(json.totalItems / 40));
+        setIsLoaded(true);
+      })
+      .catch(error => console.error('Error', error));
   }
+
+  const handlePageChange = (selectedObject) => {
+    setcurrentPage(selectedObject.selected);
+    getBooks();
+  };
 
   useEffect(() => {
       getBooks()
   }, [])
 
-
   return (
-    <div className="App">
-      <Routes>
-        <Route path = "/" element = {<Library books = {books} />} />
-        <Route path = "/books/:id" element = {<OneBook books = {books} />} />
-        <Route path = "/author/:author" element = {<Author books = {books} />} />
-      </Routes>
-    </div>
+    <>
+      <div className="App">
+        <Routes>
+          <Route path = "/" element = {<Library books = {books} isLoaded = {isLoaded} handlePageChange = {handlePageChange} pageCount = {pageCount}/>} />
+          <Route path = "/books/:id" element = {<OneBook books = {books} />} />
+          <Route path = "/author/:author" element = {<Author books = {books} />} />
+        </Routes>
+      </div>
+    </>
   );
 }
 
