@@ -11,12 +11,12 @@ function Library(props) {
             props.books.map((book, idx) => (
                 <div key = { idx }>
                     <Link to = {`/books/${idx}`}>
-                        <img src = {book.volumeInfo.imageLinks.smallThumbnail} className = "allBooksCover" alt = "book cover"/>
+                        <img src = {book.volumeInfo.imageLinks.smallThumbnail} className = "allbookscover" alt = "book cover"/>
                         <p>{book.volumeInfo.title}</p>
                     </Link>
                 </div>
             ))
-        ) : (<div>Test</div>)
+        ) : (<div>Loading...</div>)
     }
 
     { props.isLoaded ?
@@ -34,7 +34,7 @@ function Library(props) {
                 disabledClassNae={'disabled'}
                 activeClassName={'active'}
             />
-        ) : (<div>Test</div>)
+        ) : (<div></div>)
     }
     </div>
     </>

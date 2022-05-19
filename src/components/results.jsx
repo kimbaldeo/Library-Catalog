@@ -1,15 +1,11 @@
-import React, { useEffect } from 'react';
-import config from './../config.json';
-import { Link, useParams } from "react-router-dom";
-import { useState } from 'react';
+import React from "react"
+import { useParams } from "react-router"
 
+function Results() {
 
-function Author() {
-    let authorName = useParams()
+    let search = useParams()
 
-    const fetchURL = `https://books.googleapis.com/books/v1/volumes?q=inauthor:${authorName}&maxResults=40&langRestrict=en&orderBy=relevance&printType=BOOKS&key=${config.apiKey}`
-    console.log("params: " + useParams)
-    console.log("author: " + authorName)
+    const fetchURL = `https://books.googleapis.com/books/v1/volumes?q=${search}&maxResults=40&langRestrict=en&orderBy=relevance&printType=BOOKS&key=${config.apiKey}`
     
     const [books, setBooks] = useState([])
 
@@ -37,4 +33,4 @@ function Author() {
     )
 }
 
-export default Author
+export default Results

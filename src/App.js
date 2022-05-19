@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import Library from './components/allBooks';
 import OneBook from './components/book';
 import Author from './components/author'
+import Results from "./components.results"
 
 /* Steps to setup backend?
   - Setup Express
@@ -21,7 +22,7 @@ function App() {
   const [pageCount, setPageCount] = useState(1);
   const [isLoaded, setIsLoaded] = useState(false);
   const startIndex = currentPage * 40;
-  const fetchVolumesURL = `https://books.googleapis.com/books/v1/volumes?q=""&maxResults=40&langRestrict=english&orderBy=newest&printType=BOOKS&startIndex=${startIndex}&key=${config.apiKey}`
+  const fetchVolumesURL = `https://books.googleapis.com/books/v1/volumes?q=""&maxResults=40&langRestrict=en&orderBy=newest&printType=BOOKS&startIndex=${startIndex}&key=${config.apiKey}`
 
   function getBooks() {
       fetch(fetchVolumesURL)
@@ -48,8 +49,10 @@ function App() {
       <div className="App">
         <Routes>
           <Route path = "/" element = {<Library books = {books} isLoaded = {isLoaded} handlePageChange = {handlePageChange} pageCount = {pageCount}/>} />
-          <Route path = "/books/:id" element = {<OneBook books = {books} />} />
-          <Route path = "/author/:author" element = {<Author />} />
+          <Route path = "/books/:id" element = {<OneBook books = {books} />} >
+            <Route path = "/author/:author" element = {<Author />} />
+          </Route>
+          <Route path = "/search/:query" element = {<Results />} />
         </Routes>
       </div>
     </>
