@@ -18,6 +18,9 @@ function OneBook(props) {
                 <p className = "pub">published: {theBook.volumeInfo.publishedDate}</p>
                 <p className="synop">{theBook.volumeInfo.description}</p>
             </div>
+            <div className = "addShelf">
+                <button onClick = {addBook}>+ My Books</button>
+            </div>
         </>
     )
 }

@@ -64,7 +64,7 @@ a {
 }
 
 .bookView {
-  margin-bottom: 0px;
+  padding-bottom: 0px;
 }
 
 
@@ -99,27 +99,27 @@ a {
   padding-bottom: 40%;
 }
 /* Pagination  */
-.container{
+.container {
   justify-content: center;
   display: flex;
   list-style: none;
 }
 
-.page{
-padding: 10px;
+.page {
+  padding: 10px;
   border: 1px solid #dcdcdc;
   border-radius: 6px;
   margin-right: 10px;
   cursor: pointer;
+  justify-content: center;
 }
 
 .disabled{
   cursor: not-allowed;
-  
 }
 
 .active{
-border: 2px solid #000;
+  border: 2px solid #000;
   font-weight: bold;
 }
 
