@@ -1,28 +1,35 @@
-/////////////////////////
-// DEPENDENCIES
-/////////////////////////
-const express = require("express")
-const PORT = process.env.PORT || 4000
+// Import Dependencies
+const express = require("express");
+const cors = require("cors");
 
-/////////////////////////
-// The Application Object
-/////////////////////////
-const app = express()
+// Import JSON files
 
 
-/////////////////////////
-// Routes
-/////////////////////////
+// Create our app object
+const app = express();
 
-// home route that says "hello world" to test server is working
+// set up middleware
+app.use(cors());
+
+//home route for testing our app
 app.get("/", (req, res) => {
-    //res.json let's us send a response as JSON data
-    res.json({
-        response: "Hello World"
-    })
-})
+  res.send("Hello World");
+});
 
-/////////////////////////
-// Listener
-/////////////////////////
-app.listen(PORT, () => console.log(`Listening on port ${PORT}`))
+// route for retrieving projects
+app.get("/projects", (req, res) => {
+  // send projects via JSON
+  res.json(projects);
+});
+
+// route for retrieving about info
+app.get("/about", (req, res) => {
+  // send projects via JSON
+  res.json(about);
+});
+
+//declare a variable for our port number
+const PORT = process.env.PORT || 4000;
+
+// turn on the server listener
+app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
