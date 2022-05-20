@@ -30,6 +30,13 @@ In forthcoming iterations, I will be able to:
 ### Search Results
 ![search results](https://i.imgur.com/rBfkuQT.png)
 
+## Technologies/Methods
+- Javacript
+- CSS Grid
+- React
+- RegEx
+- MongoDB/Mongoose  
+
 ### Code Snippet
 ```
 function OneBook() {
