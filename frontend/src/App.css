@@ -59,10 +59,10 @@ a {
 .booksDisplay {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  gap: 1vw;
+  padding: 5px;
 }
 
-.allbookscover {
+.allBooksCover {
   width: 80px;
 }
 
@@ -101,6 +101,7 @@ a {
 .results {
   padding-bottom: 40%;
 }
+
 /* Pagination  */
 .container {
   justify-content: center;
