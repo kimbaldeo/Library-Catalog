@@ -8,7 +8,7 @@ import Header from './components/header';
 import Library from './pages/allBooks';
 import OneBook from './pages/book';
 import Author from './pages/author'
-// import Results from "./pages/results"
+import Results from "./pages/results";
 import Bookshelf from './pages/bookShelf';
 
 /* Steps to setup backend?
@@ -20,6 +20,9 @@ import Bookshelf from './pages/bookShelf';
 */
 
 function App() { 
+
+  const heroku = "https://libcatalogue.herokuapp.com/"
+
   // getting books for Main Page
   const [books, setBooks] = useState([])
   const [currentPage, setcurrentPage] = useState(0);
@@ -48,40 +51,24 @@ function App() {
       getBooks()
   }, [])
 
-//   // Search bar functions
-//   const [find, setFind] = useState("")
-//   const[results, setResults] = useState("")
-    
-//   function handleChange(e) {
-//       setFind(e.target.value)
-//   }
 
-//   async function doSearch(e) {
-//     e.preventDefault()
-//     try {
-//         const url = `https://books.googleapis.com/books/v1/volumes?q=${query}&maxResults=40&langRestrict=en&orderBy=relevance&printType=BOOKS&key=${config.apiKey}`
-//         fetch(url)
-//         .then((res) => res.json())
-//         .then((res) => setResults(res.items))
-//     }
-//     catch(err) {
-//         console.log(err)
-//     }
-// }
-    
+
+  // adding books to shelf
+  function addBook() {
+
+  }
 
   return (
     <>
-    {/* query = {query} handleChange = {handleChange} doSearch = {doSearch} */}
       <Nav />
       <Header />
       <div className="App">
         <Routes>
           <Route path = "/" element = {<Library books = {books} isLoaded = {isLoaded} handlePageChange = {handlePageChange} pageCount = {pageCount}/>} />
-          <Route path = "/shelf" element = {<Bookshelf />} />
-          <Route path = "/books/:id" element = {<OneBook books = {books} />} />
+          <Route path = "/shelf" element = {<Bookshelf heroku = {heroku} />} />
+          <Route path = "/books/:id" element = {<OneBook heroku = {heroku} addBook = {addBook} books = {books} />} />
           <Route path = "/author/:author" element = {<Author />} />
-          {/* <Route path = "/search/:results" element = {<Results results = {results} />} /> */}
+          <Route path = "/search/:results" element = {<Results />} />
         </Routes>
       </div>
     </>

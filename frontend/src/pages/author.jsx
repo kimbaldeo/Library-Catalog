@@ -1,15 +1,14 @@
 import React, { useEffect } from 'react';
 import config from '../config.json';
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useState } from 'react';
 
 
 function Author() {
-    let {authorName} = useParams()
+    let {author} = useParams()
 
-    const fetchURL = `https://books.googleapis.com/books/v1/volumes?q=inauthor:${authorName}&maxResults=40&langRestrict=en&orderBy=relevance&printType=BOOKS&key=${config.apiKey}`
-    console.log("params: " + useParams)
-    console.log("author: " + authorName)
+    const fetchURL = `https://books.googleapis.com/books/v1/volumes?q=inauthor:${author}&maxResults=40&langRestrict=en&orderBy=relevance&printType=BOOKS&key=${config.apiKey}`
+    console.log("author: " + author)
     
     const [books, setBooks] = useState([])
 
@@ -26,12 +25,10 @@ function Author() {
     return (
         <>
             <div className = 'results'>
-            <h1>Written by {authorName}</h1>
+            <h1>Written by {author.replace("+", " ")}</h1>
             { books ? books.map((book, idx) => (
                 <div key = {idx}>
-                    <Link to = {`/${idx}`}>
-                        <h3>{book.volumeInfo.title}</h3>
-                    </Link>
+                    <h3>{book.volumeInfo.title}</h3>
                 </div>
             )) : <h2>Loading...</h2>}
             </div>
