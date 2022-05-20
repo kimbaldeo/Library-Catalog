@@ -5,7 +5,7 @@ import { useState } from 'react';
 
 
 function Author() {
-    let authorName = useParams()
+    let {authorName} = useParams()
 
     const fetchURL = `https://books.googleapis.com/books/v1/volumes?q=inauthor:${authorName}&maxResults=40&langRestrict=en&orderBy=relevance&printType=BOOKS&key=${config.apiKey}`
     console.log("params: " + useParams)
@@ -25,7 +25,8 @@ function Author() {
 
     return (
         <>
-            <h1>{authorName}</h1>
+            <div className = 'results'>
+            <h1>Written by {authorName}</h1>
             { books ? books.map((book, idx) => (
                 <div key = {idx}>
                     <Link to = {`/${idx}`}>
@@ -33,6 +34,7 @@ function Author() {
                     </Link>
                 </div>
             )) : <h2>Loading...</h2>}
+            </div>
         </>
     )
 }

@@ -9,7 +9,7 @@ function Library(props) {
     { props.isLoaded ? 
         (
             props.books.map((book, idx) => (
-                <div key = { idx }>
+                <div key = { idx } className = "bookView">
                     <Link to = {`/books/${idx}`}>
                         <img src = {book.volumeInfo.imageLinks.smallThumbnail} className = "allbookscover" alt = "book cover"/>
                         <p>{book.volumeInfo.title}</p>
