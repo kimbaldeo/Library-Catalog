@@ -31,12 +31,13 @@ In forthcoming iterations, I will be able to:
 ![search results](https://i.imgur.com/rBfkuQT.png)
 
 ### Code Snippet
+```
 function OneBook() {
     let author = theBook.volumeInfo.authors[0]
     let authorLink = author.replace(/\s+/g, "+")
-    ...
+
     <h3><Link to = {`/author/${authorLink}`}>{author}</Link></h3>
-    --------
+
 function Author() {
     let {author} = useParams()
 
